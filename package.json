@@ -9,11 +9,17 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "meteor-node-stubs": "^0.4.1"
+    "bcrypt": "^3.0.2",
+    "meteor-node-stubs": "^0.4.1",
+    "react": "^16.6.3",
+    "react-addons-pure-render-mixin": "^15.6.2",
+    "react-dom": "^16.6.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   },
   "meteor": {
     "mainModule": {
-      "client": "client/main.js",
+      "client": "client/main.jsx",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
