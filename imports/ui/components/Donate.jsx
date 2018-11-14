@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Banner from '../components/Banner/Banner';
 import Callto from '../components/Callto/Callto';
+import Mapa from './Mapa/Mapa';
 
 import '../css/bootstrap.css';
 import '../css/font-awesome.min.css';
@@ -14,8 +15,7 @@ export class Donate extends Component {
   render() {
     return (
       <div>
-         <Banner></Banner>
-        <Callto></Callto>
+        <Mapa></Mapa>
       </div>
     )
   }
