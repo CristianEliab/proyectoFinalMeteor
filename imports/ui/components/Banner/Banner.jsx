@@ -10,10 +10,10 @@ export class Banner extends Component {
                         <div className="row fullscreen align-items-center justify-content-start" >
                             <div className="banner-content col-lg-9 col-md-12">
                                 <h1>
-                                    Your Donation <br></br>
-                                    is Others Inspiration
+                                    Tu Donación <br></br>
+                                    es Nuestra Inspiración
 								</h1>
-                                <a href="#donate" className="head-btn btn text-uppercase">Donate Now</a>
+                                <a href="#donate" className="head-btn btn text-uppercase">DONA AHORA</a>
                             </div>
                         </div>
                     </div>

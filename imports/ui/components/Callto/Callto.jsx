@@ -7,8 +7,8 @@ export class Callto extends Component {
                 <section className="callto-area relative">
                     <div className="container">
                         <div className="row d-flex callto-wrap justify-content-between pt-40 pb-40">
-                            <h3 className="text-white">Please Help them and Donate now</h3>
-                            <a href="#" className="head-btn head-btn2 btn text-uppercase">Donate Now</a>
+                            <h3 className="text-white">¡Por favor ayudanos en nuestra causa!</h3>
+                            <a href="#" className="head-btn head-btn2 btn text-uppercase">DONA AHORA</a>
                         </div>
                     </div>
                 </section>

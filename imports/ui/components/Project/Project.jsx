@@ -13,7 +13,7 @@ export class Project extends Component {
 							<div className="col-md-8 pb-80 header-text">
 								<h1>Noticias sobre Venezuela</h1>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br></br> labore  et dolore magna aliqua.
+									Inmigrantes venezolanos en condiciones de pobreza extrema, que llegan a la ciudad de Cali en busca de oportunidades y no se sabe cómo ayudarles de manera efectiva.
 							</p>
 							</div>
 						</div>
@@ -25,14 +25,14 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="350" width="311" src="./d1.jpg" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="#" className="head-btn btn text-uppercase">Donate Now</a>
+												<a href="#" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div className="details">
-									<a href="#"><h2>Easy Flight Search</h2></a>
-									<p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.</p>
+									<a href="#"><h2>La ONU cifra en 3 millones los refugiados y migrantes venezolanos en el mundo</h2></a>
+									<p>El número de refugiados y migrantes venezolanos en el mundo ha alcanzado los tres millones, según la Agencia de Naciones Unidas para los Refugiados (ACNUR) y la Organización Internacional de las Migraciones (OIM).</p>
 									<a className="text-uppercase" href="#">Leer más</a>
 								</div>
 
@@ -44,14 +44,14 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="360" width="311" src="./d2.jpg" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="#" className="head-btn btn text-uppercase">Donate Now</a>
+												<a href="#" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div className="details">
-									<a href="#"><h2>Easy Flight Search</h2></a>
-									<p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.</p>
+									<a href="#"><h2>La UE prolonga sus sanciones a Venezuela otro año por ‘deterioro situación’</h2></a>
+									<p>La Unión Europea (UE) ha acordado este martes prolongar otro año el embargo de armas decretado a Venezuela y las sanciones individualizadas “contra responsables de la represión en el país”, al considerar que continúa el "deterioro de la situación" a causa de la crisis política.</p>
 									<a className="text-uppercase" href="#">Leer más</a>
 								</div>
 							</div>
@@ -62,14 +62,14 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="350" width="311" src="./vene.png" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="#" className="head-btn btn text-uppercase">Donate Now</a>
+												<a href="#" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div className="details">
-									<a href="#"><h2>Easy Flight Search</h2></a>
-									<p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct women face higher conduct.</p>
+									<a href="#"><h2>Reunificación familiar disparará migración venezolana: Banco Mundial</h2></a>
+									<p>El reto humanitario de acoger y atender a los más de 1,2 millones de venezolanos que han entrado al país y decidieron quedarse podría multiplicarse en el mediano plazo y forzar aún más la capacidad de respuesta del Estado colombiano por causa de un factor que hasta ahora no era muy visible: la reunificación familiar de los migrantes.</p>
 									<a className="text-uppercase" href="#">Leer más</a>
 								</div>
 							</div>
