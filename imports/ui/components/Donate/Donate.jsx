@@ -48,15 +48,15 @@ export class Donate extends Component {
                                             </select>
                                         </div>
                                         <div className="col-lg-6 d-flex flex-column">
-                                            <input name="fname" placeholder="Enter your name" onfocus="this.placeholder = ''" onBlur="this.placeholder = 'Enter your name'" className="form-control mt-20" required="" type="text" required />
+                                            <input name="fname" placeholder="Enter your name" className="form-control mt-20" required="" type="text" required />
                                         </div>
                                         <div className="col-lg-6 d-flex flex-column">
-                                            <input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onBlur="this.placeholder = 'Enter email address'" className="form-control mt-20" required="" type="email" />
+                                            <input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" className="form-control mt-20" required="" type="email" />
                                         </div>
                                         <div className="col-lg-12 d-flex flex-column">
-                                            <input name="amound" placeholder="Donation amount (USD)" onfocus="this.placeholder = ''" onBlur="this.placeholder = 'Donation amount (USD)'" className="form-control mt-20" required="" type="text" />
+                                            <input name="amound" placeholder="Donation amount (USD)" className="form-control mt-20" required="" type="text" />
 
-                                            <textarea className="form-control mt-20" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onBlur="this.placeholder = 'Messege'" required=""></textarea>
+                                            <textarea className="form-control mt-20" name="message" placeholder="Messege" required=""></textarea>
                                         </div>
 
                                         <div className="col-lg-12 d-flex justify-content-end send-btn">
@@ -67,7 +67,7 @@ export class Donate extends Component {
                                     </div>
                                 </form>
                                 <p className="payment-method">
-                                    We Accept :   <img src="img/payment.png" alt="" />
+                                    We Accept :   <img src="./payment.png" alt="" />
                                 </p>
                             </div>
                         </div>

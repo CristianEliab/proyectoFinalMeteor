@@ -8,7 +8,7 @@ export class About extends Component {
 				<div className="container-fluid">
 					<div className="row d-flex justify-content-end align-items-center">
 						<div className="col-lg-6 col-md-12 about-left no-padding">
-							<img className="img-fluid" src="img/about-img.jpg" alt="" />
+							<img className="img-fluid" src="./about-img.jpg" alt="" />
 						</div>
 						<div className="col-lg-6 col-md-12 about-right">
 							<h1>A very Lovely Welcome <br></br>

@@ -20,7 +20,7 @@ export class Volunteer extends Component {
 								<div className="content">
 								    <a href="#" target="_blank">
 								      <div className="content-overlay"></div>
-								  		 <img className="content-image img-fluid d-block mx-auto" src="img/v1.jpg" alt="" />
+								  		 <img className="content-image img-fluid d-block mx-auto" src="./v1.jpg" alt="" />
 								      	<div className="content-details fadeIn-bottom">
 								      		<h4>Andy Florence</h4>
 								      		<p>
@@ -36,7 +36,7 @@ export class Volunteer extends Component {
 								<div className="content">
 								    <a href="#" target="_blank">
 								      <div className="content-overlay"></div>
-								  		 <img className="content-image img-fluid d-block mx-auto" src="img/v2.jpg" alt="" />
+								  		 <img className="content-image img-fluid d-block mx-auto" src="./v2.jpg" alt="" />
 								      	<div className="content-details fadeIn-bottom">
 								      		<h4>Andy Florence</h4>
 								      		<p>
@@ -52,7 +52,7 @@ export class Volunteer extends Component {
 								<div className="content">
 								    <a href="#" target="_blank">
 								      <div className="content-overlay"></div>
-								  		 <img className="content-image img-fluid d-block mx-auto" src="img/v3.jpg" alt="" />
+								  		 <img className="content-image img-fluid d-block mx-auto" src="./v3.jpg" alt="" />
 								      	<div className="content-details fadeIn-bottom">
 								      		<h4>Andy Florence</h4>
 								      		<p>
@@ -68,7 +68,7 @@ export class Volunteer extends Component {
 								<div className="content">
 								    <a href="#" target="_blank">
 								      <div className="content-overlay"></div>
-								  		 <img className="content-image img-fluid d-block mx-auto" src="img/v4.jpg" alt="" />
+								  		 <img className="content-image img-fluid d-block mx-auto" src="./v4.jpg" alt="" />
 								      	<div className="content-details fadeIn-bottom">
 								      		<h4>Andy Florence</h4>
 								      		<p>

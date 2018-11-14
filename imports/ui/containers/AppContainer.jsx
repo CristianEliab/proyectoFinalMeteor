@@ -1,58 +1,64 @@
 import React, { Component } from 'react';
-import { withHistory } from 'react-router-dom';
 import MainContainer from './MainContainer.jsx';
 
 export default class AppContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = this.getMeteorData();
     this.logout = this.logout.bind(this);
   }
 
-  getMeteorData(){
+  getMeteorData() {
     return { isAuthenticated: Meteor.userId() !== null };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     if (!this.state.isAuthenticated) {
       this.props.history.push('/login');
     }
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     if (!this.state.isAuthenticated) {
       this.props.history.push('/login');
     }
   }
 
-  logout(e){
+  logout(e) {
     e.preventDefault();
-    Meteor.logout( (err) => {
-        if (err) {
-            console.log( err.reason );
-        } else {
-            this.props.history.push('/login');
-        }
+    Meteor.logout((err) => {
+      if (err) {
+        console.log(err.reason);
+      } else {
+        this.props.history.push('/login');
+      }
     });
   }
 
-  render(){
+  render() {
     return (
       <div>
-        <nav className="navbar navbar-default navbar-static-top">
+        <header className="default-header">
           <div className="container">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#">Auth App</a>
-            </div>
-            <div className="navbar-collapse">
-              <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <a href="#" onClick={this.logout}>Logout</a>
-                </li>
-              </ul>
+            <div className="header-wrap">
+              <div className="header-top d-flex justify-content-between align-items-center">
+                <div className="logo">
+                  <a href="#home"><img src="./logo.png" alt="" /></a>
+                </div>
+                <div className="main-menubar d-flex align-items-center">
+                  <nav className="hide">
+                    <a href="#home">Home</a>
+                    <a href="#project">Projects</a>
+                    <a href="#about">About</a>
+                    <a href="#donate">Donate</a>
+                    <a href="#" onClick={this.logout}>Logout</a>
+                  </nav>
+                  <div className="menu-bar"><span className="lnr lnr-menu"></span></div>
+                </div>
+              </div>
             </div>
           </div>
-        </nav>
+        </header>
         <MainContainer />
       </div>
     );
