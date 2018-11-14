@@ -8,10 +8,9 @@ export class Footer extends Component {
                     <div className="container">
                         <div className="row d-flex flex-column justify-content-center">
                             <ul className="footer-menu">
-                                <li><a href="#home">Home</a></li>
-                                <li><a href="#project">Projects</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#donate">Donate</a></li>
+                                <li><a href="#home">Inicio</a></li>
+                                <li><a href="#project">Noticias</a></li>
+                                <li><a href="#about">Nuestro equipo</a></li>
                             </ul>
                             <div className="footer-social">
                                 <a href="#"><i className="fa fa-facebook"></i></a>

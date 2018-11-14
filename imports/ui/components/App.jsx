@@ -24,7 +24,6 @@ export class App extends Component {
         <Project></Project>
         <About></About>
         <Volunteer></Volunteer>
-        <Donate></Donate>
         <Footer></Footer>
       </div>
     )

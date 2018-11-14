@@ -21,7 +21,7 @@ export default class LoginPage extends Component {
           error: err.reason
         });
       } else {
-        this.props.history.push('/');
+        this.props.history.push('/home');
       }
     });
   }
