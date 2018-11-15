@@ -65,12 +65,12 @@ onMouseoverMarker(props, marker, e) {
 
     //Cuando la ventana se abre
     windowHasOpened() {
-        console.log("Se abrió la ventana");
+
     }
 
     //cuando la ventana se cierra
     windowHasClosed() {
-        console.log("Se Cerró la ventana");
+
     }
 
 
@@ -94,37 +94,66 @@ onMouseoverMarker(props, marker, e) {
                     <Marker
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
-                        title={'Título de la Universidad ICESI'}
-                        name={'Universidad ICESI'}
-                        direccion={"Carrera 1"}
-                        position={{ lat: 3.341856, lng: -76.530804 }} />
+                        //data={['data1', 'data2', 'data3']}
+                        data="Lenteja, Harina de Maíz, Arroz, Azúcar, Frijol."
+                        img={'./cruzroja.jpg'}
+                        name={'Cruz Roja Colombiana Cali'}
+                        direccion={"Cra. 38 Bis #5-91, Cali, Valle del Cauca"}
+                        position={{ lat: 3.427135, lng: -76.545069 }} />
 
                     <Marker
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
-                        title={'Título de la Universidad del Valle'}
-                        name={'Universidad del Valle'}
-                        direccion={"Carrera 2"}
-                        position={{ lat: 3.375579, lng: -76.534086 }} />
+                        //data={['data1', 'data2', 'data3']}
+                        data="Sal, Panela, Café, Chocolate, Aceite."
+                        img={'./bancodealimentos.jpg'}
+                        name={'Banco de Alimentos Cali'}
+                        direccion={"Cl. 24 #6-103, Cali, Valle del Cauca"}
+                        position={{ lat: 3.454441, lng: -76.520135 }} />
 
                     <Marker
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
-                        title={'Título de la Universidad Santiago de Cali'}
-                        name={'Universidad Santiago de Cali'}
-                        direccion={"Carrera 3"}
-                        position={{ lat: 3.402827, lng: -76.547116 }} />
+                        //data={['data1', 'data2', 'data3']}
+                        data="Leche en polvo, Bocadillo, Pasta para sopa, Pasta para seco, Atún."
+                        img={'./arquidiocesis.jpg'}
+                        name={'Arquidiócesis de Cali'}
+                        direccion={"Cra. 4 #7-17, Cali, Valle del Cauca"}
+                        position={{ lat: 3.450946, lng: -76.535900 }} />
 
                     <InfoWindow
                         onOpen={this.windowHasOpened}
                         onClose={this.windowHasClosed}
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}>
-                        <div>
-                            <h2>{this.state.selectedPlace.title}</h2>
-                            <p>{this.state.selectedPlace.name} <br />
-                                {this.state.selectedPlace.direccion}
-                            </p>
+
+                        <div className="ventanaInfo">
+
+                            <div className="ventanaInfoTitulo">
+                                <h3>{this.state.selectedPlace.name}</h3>
+                            </div>
+
+                            <div className="row">
+
+                                <div className="col">
+                                    <div className="imgOrganizaciones">
+                                        <img src={this.state.selectedPlace.img} />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
+                                    <div className="listaArticulosDemanda">
+                                        <p>{this.state.selectedPlace.data}</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div className="direccion">
+                                <p>{this.state.selectedPlace.direccion}</p>
+                            </div>
+
                         </div>
                     </InfoWindow>
 
@@ -137,4 +166,4 @@ onMouseoverMarker(props, marker, e) {
 
 export default GoogleApiWrapper({
     apiKey: (MY_API_KEY)
-  })(Mapa)
+})(Mapa)
