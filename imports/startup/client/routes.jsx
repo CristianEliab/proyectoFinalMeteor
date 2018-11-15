@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppContainer from '../../ui/containers/AppContainer.jsx';
 import MainContainer from '../../ui/containers/MainContainer.jsx';
 import DonateContainer from '../../ui/containers/DonateContainer.jsx';
+import InventarioContainer from '../../ui/containers/InventariosContainer.jsx';
 
 // pages
 import SignupPage from '../../ui/pages/SignupPage.jsx';
@@ -41,6 +42,7 @@ export class Routes extends Component {
                     <nav className="hide">
                       <a href="/home" >Inicio</a>
                       <a href="/donar" >Quiero Donar</a>
+                      <a href="/inventario" >Inventario</a>
                     </nav>
                     <div className="menu-bar"><span className="lnr lnr-menu"></span></div>
                   </div>
@@ -50,6 +52,7 @@ export class Routes extends Component {
           </header>
           <Route path="/home" component={MainContainer} />
           <Route path="/donar" component={DonateContainer} />
+          <Route path="/inventario" component={InventarioContainer} />
           <Route exact={true} path="/" component={AppContainer} />
         </div>
       </Router>

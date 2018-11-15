@@ -11,6 +11,16 @@ export default class AppContainer extends Component {
     return { isAuthenticated: Meteor.userId() !== null };
   }
 
+  componentWillMount() {
+    this.props.history.push('/home');
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (!this.state.isAuthenticated) {
+  //     this.props.history.push('/home');
+  //   }
+  // }
+
   render() {
     return (
       <div>
