@@ -10,7 +10,8 @@ export class Footer extends Component {
                             <ul className="footer-menu">
                                 <li><a href="#home">Inicio</a></li>
                                 <li><a href="#project">Noticias</a></li>
-                                <li><a href="#about">Nuestro equipo</a></li>
+                                <li><a href="#about">Llamado a la acción</a></li>
+                                <li><a href="#voluntarios">Nuestro equipo</a></li>
                             </ul>
                             <div className="footer-social">
                                 <a href="#"><i className="fa fa-facebook"></i></a>

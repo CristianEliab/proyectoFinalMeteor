@@ -31,6 +31,8 @@ export class Routes extends Component {
     return (
       <Router>
         <div>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
           <Route path="/home" component={MainContainer} />
           <Route path="/donar" component={DonateContainer} />
           <Route path="/inventario" component={InventarioContainer} />

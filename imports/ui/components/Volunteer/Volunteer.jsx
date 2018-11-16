@@ -6,7 +6,7 @@ export class Volunteer extends Component {
 	render() {
 		return (
 			<div>
-				<section className="volunteer-area section-gap">
+				<section className="volunteer-area section-gap" id="voluntarios">
 					<div className="container">
 						<div className="row d-flex justify-content-center">
 							<div className="col-md-8 pb-80 header-text">

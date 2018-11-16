@@ -1,10 +1,55 @@
 import React, { Component } from 'react';
-import Footer from '../Footer/Footer';
+import InventarioItem from './InventarioItem';
+
+import '../../css/nprogress.css';
 import './inventario.css';
 
 export class Inventario extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: this.props.name,
+      listaProductos: [
+        {
+          id: '1',
+          nombre: 'Arroz',
+          n_voluntarios: '2',
+          c_inventario: '10',
+          estado: 'danger'
+        },
+        {
+          id: '2',
+          nombre: 'Lentejas',
+          n_voluntarios: '4',
+          c_inventario: '99',
+          estado: 'success'
+        },
+        {
+          id: '3',
+          nombre: 'Pollo',
+          n_voluntarios: '4',
+          c_inventario: '20',
+          estado: 'danger'
+        }
+      ]
+
+    }
+
+  }
+
+  componentWillMount() {
+    this.render();
+  }
+
   render() {
+
+    console.log(this.state.listaProductos);
+    var productos = this.state.listaProductos.map(producto => {
+      return (
+        <InventarioItem pro={producto} key={producto.id}></InventarioItem>
+      );
+    })
 
     var estilo = {
       width: '1%'
@@ -12,394 +57,65 @@ export class Inventario extends Component {
     var estilo2 = {
       width: '20%'
     };
-    
     return (
       <div className="Inventarios ">
         <div className="container body">
-          <div className="right_col" role="main">
-            <div className="">
-              <div className="page-title">
-                <div className="title_left">
-                  <h3>Projects <small>Listing design</small></h3>
-                </div>
 
-                <div className="title_right">
-                  <div className="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div className="input-group">
-                      <input type="text" className="form-control" placeholder="Search for..." />
-                      <span className="input-group-btn">
-                        <button className="btn btn-default" type="button">Go!</button>
-                      </span>
-                    </div>
+          <div className="inventario">
+
+            <div className="right_col" role="main">
+              <div className="">
+                <div className="page-title">
+                  <div className="title_left">
+                    <h3>Inventario <small>Lista de productos de {this.props.name} </small></h3>
                   </div>
                 </div>
-              </div>
 
-              <div className="clearfix"></div>
+                <div className="clearfix"></div>
 
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="x_panel">
-                    <div className="x_title">
-                      <h2>Projects</h2>
-                      <ul className="nav navbar-right panel_toolbox">
-                        <li><a className="collapse-link"><i className="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li className="dropdown">
-                          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i className="fa fa-wrench"></i></a>
-                          <ul className="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a className="close-link"><i className="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div className="clearfix"></div>
-                    </div>
-                    <div className="x_content">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="x_panel">
+                      <div className="x_title">
+                        <h2>Elementos Donados</h2>
+                        <ul className="nav navbar-right panel_toolbox">
+                          <li><a className="collapse-link"><i className="fa fa-chevron-up"></i></a>
+                          </li>
+                          <li className="dropdown">
+                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i className="fa fa-wrench"></i></a>
+                            <ul className="dropdown-menu" role="menu">
+                              <li><a href="#">Settings 1</a>
+                              </li>
+                              <li><a href="#">Settings 2</a>
+                              </li>
+                            </ul>
+                          </li>
+                          <li><a className="close-link"><i className="fa fa-close"></i></a>
+                          </li>
+                        </ul>
+                        <div className="clearfix"></div>
+                      </div>
+                      <div className="x_content">
 
-                      <p>Simple table with project listing with progress and editing options</p>
+                        <p>Todos los productos necesarios que se requieren para donación en la {this.props.name} </p>
 
-                      <table className="table table-striped projects">
-                        <thead>
-                          <tr>
+                        <table className="table table-striped projects">
+                          <thead>
+                            <tr>
+                              <th style={estilo}>Identificador</th>
+                              <th style={estilo2}>Nombre del producto</th>
+                              <th>N° de voluntarios</th>
+                              <th>Cantidad en inventario</th>
+                              <th>Estado</th>
+                              <th style={estilo2}>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {productos}
+                          </tbody>
+                        </table>
 
-                            <th style={estilo}>#</th>
-                            <th style={estilo2}>Project Name</th>
-                            <th>Team Members</th>
-                            <th>Project Progress</th>
-                            <th>Status</th>
-                            <th style={estilo2}>#Edit</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                              </div>
-                              <small>57% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                              </div>
-                              <small>47% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                              </div>
-                              <small>77% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                              </div>
-                              <small>60% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="12"></div>
-                              </div>
-                              <small>12% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="35"></div>
-                              </div>
-                              <small>35% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="/user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="87"></div>
-                              </div>
-                              <small>87% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                              </div>
-                              <small>77% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>#</td>
-                            <td>
-                              <a>Pesamakini Backend UI</a>
-                              <br />
-                              <small>Created 01.01.2015</small>
-                            </td>
-                            <td>
-                              <ul className="list-inline">
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                                <li>
-                                  <img src="./user.png" className="avatar" alt="Avatar" />
-                                </li>
-                              </ul>
-                            </td>
-                            <td className="project_progress">
-                              <div className="progress progress_sm">
-                                <div className="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                              </div>
-                              <small>77% Complete</small>
-                            </td>
-                            <td>
-                              <button type="button" className="btn btn-success btn-xs">Success</button>
-                            </td>
-                            <td>
-                              <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> View </a>
-                              <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Edit </a>
-                              <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Delete </a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -407,7 +123,25 @@ export class Inventario extends Component {
             </div>
           </div>
         </div>
-        <Footer></Footer>
+
+
+        <footer className="footer-area section-gap">
+          <div className="container">
+            <div className="row d-flex flex-column justify-content-center">
+              <ul className="footer-menu">
+              </ul>
+              <div className="footer-social">
+                <a href="#"><i className="fa fa-facebook"></i></a>
+                <a href="#"><i className="fa fa-twitter"></i></a>
+                <a href="#"><i className="fa fa-dribbble"></i></a>
+                <a href="#"><i className="fa fa-behance"></i></a>
+              </div>
+              <p className="footer-text m-0">
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                            </p>
+            </div>
+          </div>
+        </footer>
       </div>
     )
   }

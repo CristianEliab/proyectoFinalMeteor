@@ -154,7 +154,7 @@ onMouseoverMarker(props, marker, e) {
                                 <p>{this.state.selectedPlace.direccion}</p>
                             </div>
                             <div id="btnRegistrar">
-                                <a href="/inventario" className="btn btn-primary" role="button">Registrar Donación</a>
+                                <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
                             </div>
 
                         </div>
