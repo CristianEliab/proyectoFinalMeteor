@@ -10,7 +10,7 @@
     text-align: center;
 }
 #tituloArticulosDemanda{
-    color: red;
+    color: #0069d9;
     font-weight: bold;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -18,7 +18,13 @@
 .direccion{
     margin-top: 15px;
     text-align: center;
+    font-weight: bold;
 }
 .imgOrganizaciones{
     text-align: center;
+}
+#btnRegistrar{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

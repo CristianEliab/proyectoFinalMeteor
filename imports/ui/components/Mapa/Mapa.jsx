@@ -94,7 +94,7 @@ onMouseoverMarker(props, marker, e) {
                     <Marker
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
-                        //data={['data1', 'data2', 'data3']}
+                        data2={['data1', 'data2', 'data3']}
                         data="Lenteja, Harina de Maíz, Arroz, Azúcar, Frijol."
                         img={'./cruzroja.jpg'}
                         name={'Cruz Roja Colombiana Cali'}
@@ -115,7 +115,7 @@ onMouseoverMarker(props, marker, e) {
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
                         //data={['data1', 'data2', 'data3']}
-                        data="Leche en polvo, Bocadillo, Pasta para sopa, Pasta para seco, Atún."
+                        data="Leche en polvo, Bocadillo, Pasta, Atún."
                         img={'./arquidiocesis.jpg'}
                         name={'Arquidiócesis de Cali'}
                         direccion={"Cra. 4 #7-17, Cali, Valle del Cauca"}
@@ -144,14 +144,17 @@ onMouseoverMarker(props, marker, e) {
                                     <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
                                     <div className="listaArticulosDemanda">
                                         <p>{this.state.selectedPlace.data}</p>
+                                        <p>{this.state.selectedPlace.data2}</p>
                                     </div>
                                 </div>
-
 
                             </div>
 
                             <div className="direccion">
                                 <p>{this.state.selectedPlace.direccion}</p>
+                            </div>
+                            <div id="btnRegistrar">
+                                <a href="/inventario" className="btn btn-primary" role="button">Registrar Donación</a>
                             </div>
 
                         </div>
