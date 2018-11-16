@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-
+import './mapa.css';
 const MY_API_KEY = "AIzaSyBioI0V6qQMOQMdNzbbB6rmCAU4rWWpzmo";
 
-import './mapa.css';
 
-const estiloMapa = {
-    width: '100%',
-    height: '100%',
-}
 
 export class Mapa extends Component {
 
@@ -18,6 +13,36 @@ export class Mapa extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
+            infoMarcadores: [
+                {
+                    "id": 1,
+                    "nombre": "Cruz Roja Colombiana Cali",
+                    "latitud": "3.427135",
+                    "longitud": "-76.545069",
+                    "articulos": "Lenteja, Harina de Maíz, Arroz, Azúcar, Frijol.",
+                    "img": "./cruzroja.jpg",
+                    "direccion": "Cra. 38 Bis #5-91, Cali, Valle del Cauca"
+
+                },
+                {
+                    "id": 2,
+                    "nombre": "Banco de Alimentos Cali",
+                    "latitud": "3.454441",
+                    "longitud": "-76.520135",
+                    "articulos": "Sal, Panela, Café, Chocolate, Aceite.",
+                    "img": "./bancodealimentos.jpg",
+                    "direccion": "Cl. 24 #6-103, Cali, Valle del Cauca"
+                },
+                {
+                    "id": 3,
+                    "nombre": "Arquidiócesis de Cali",
+                    "latitud": "3.450946",
+                    "longitud": "-76.535900",
+                    "articulos": "Leche en polvo, Bocadillo, Pasta, Atún.",
+                    "img": "./arquidiocesis.jpg",
+                    "direccion": "Cra. 4 #7-17, Cali, Valle del Cauca"
+                }
+            ]
         };
     }
 
@@ -76,8 +101,33 @@ onMouseoverMarker(props, marker, e) {
 
 
 
-
     render() {
+
+        const estiloMapa = {
+            width: '100%',
+            height: '100%',
+        }
+
+
+
+
+        var listaMarcadores = this.state.infoMarcadores.map(
+            marcador => {
+
+                return (
+                    <Marker
+                        key={marcador.id}
+                        onMouseover={this.onMouseoverMarker}
+                        onClick={this.onMarkerClick}
+                        position={{ lat: marcador.latitud, lng: marcador.longitud }} 
+                        nombre={marcador.nombre}
+                        articulos={marcador.articulos}
+                        img={marcador.img}
+                        direccion={marcador.direccion}/>
+                );
+            }
+        );
+
         return (
             <div className="seccionMapa">
 
@@ -91,35 +141,7 @@ onMouseoverMarker(props, marker, e) {
                     zoom={13}
                     onClick={this.onMapClicked} >
 
-                    <Marker
-                        onMouseover={this.onMouseoverMarker}
-                        onClick={this.onMarkerClick}
-                        data2={['data1', 'data2', 'data3']}
-                        data="Lenteja, Harina de Maíz, Arroz, Azúcar, Frijol."
-                        img={'./cruzroja.jpg'}
-                        name={'Cruz Roja Colombiana Cali'}
-                        direccion={"Cra. 38 Bis #5-91, Cali, Valle del Cauca"}
-                        position={{ lat: 3.427135, lng: -76.545069 }} />
-
-                    <Marker
-                        onMouseover={this.onMouseoverMarker}
-                        onClick={this.onMarkerClick}
-                        //data={['data1', 'data2', 'data3']}
-                        data="Sal, Panela, Café, Chocolate, Aceite."
-                        img={'./bancodealimentos.jpg'}
-                        name={'Banco de Alimentos Cali'}
-                        direccion={"Cl. 24 #6-103, Cali, Valle del Cauca"}
-                        position={{ lat: 3.454441, lng: -76.520135 }} />
-
-                    <Marker
-                        onMouseover={this.onMouseoverMarker}
-                        onClick={this.onMarkerClick}
-                        //data={['data1', 'data2', 'data3']}
-                        data="Leche en polvo, Bocadillo, Pasta, Atún."
-                        img={'./arquidiocesis.jpg'}
-                        name={'Arquidiócesis de Cali'}
-                        direccion={"Cra. 4 #7-17, Cali, Valle del Cauca"}
-                        position={{ lat: 3.450946, lng: -76.535900 }} />
+                    {listaMarcadores}
 
                     <InfoWindow
                         onOpen={this.windowHasOpened}
@@ -130,7 +152,7 @@ onMouseoverMarker(props, marker, e) {
                         <div className="ventanaInfo">
 
                             <div className="ventanaInfoTitulo">
-                                <h3>{this.state.selectedPlace.name}</h3>
+                                <h3>{this.state.selectedPlace.nombre}</h3>
                             </div>
 
                             <div className="row">
@@ -143,8 +165,7 @@ onMouseoverMarker(props, marker, e) {
                                 <div className="col">
                                     <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
                                     <div className="listaArticulosDemanda">
-                                        <p>{this.state.selectedPlace.data}</p>
-                                        <p>{this.state.selectedPlace.data2}</p>
+                                        <p>{this.state.selectedPlace.articulos}</p>
                                     </div>
                                 </div>
 
