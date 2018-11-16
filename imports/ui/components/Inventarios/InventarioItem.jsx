@@ -3,7 +3,13 @@ import React, { Component } from 'react'
 export class InventarioItem extends Component {
     render() {
 
-        var listaVoluntarios = this.props.pro.n_voluntarios;
+        var listaVoluntarios = this.props.pro.n_voluntarios.map(element => {
+            return (
+                <li key={element}>
+                    <img src="./user.png" className="avatar" alt="Avatar" />
+                </li>
+            );
+        });;
 
 
         return (
@@ -16,15 +22,7 @@ export class InventarioItem extends Component {
                 </td>
                 <td>
                     <ul className="list-inline">
-                        <li>
-                            <img src="./user.png" className="avatar" alt="Avatar" />
-                        </li>
-                        <li>
-                            <img src="./user.png" className="avatar" alt="Avatar" />
-                        </li>
-                        <li>
-                            <img src="./user.png" className="avatar" alt="Avatar" />
-                        </li>
+                        {listaVoluntarios}
                     </ul>
                 </td>
                 <td className="project_progress">
@@ -32,7 +30,7 @@ export class InventarioItem extends Component {
                     <progress value={this.props.pro.c_inventario} max="100">{this.props.pro.c_inventario} %</progress>
                 </td>
                 <td>
-                    <button type="button" className={"btn btn-" + this.props.pro.c_inventario + " btn-xs"}>{this.props.pro.estado}</button>
+                    <button type="text" className={this.props.pro.estado == "success" ? "btn btn-success btn-xs" : "btn btn-danger btn-xs"}>{this.props.pro.estado}</button>
                 </td>
                 <td>
                     <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> Ver </a>

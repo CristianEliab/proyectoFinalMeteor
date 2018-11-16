@@ -14,21 +14,21 @@ export class Inventario extends Component {
         {
           id: '1',
           nombre: 'Arroz',
-          n_voluntarios: '2',
+          n_voluntarios: ['1','2','3'],
           c_inventario: '10',
           estado: 'danger'
         },
         {
           id: '2',
           nombre: 'Lentejas',
-          n_voluntarios: '4',
+          n_voluntarios: ['1','2'],
           c_inventario: '99',
           estado: 'success'
         },
         {
           id: '3',
           nombre: 'Pollo',
-          n_voluntarios: '4',
+          n_voluntarios: ['1','2','3'],
           c_inventario: '20',
           estado: 'danger'
         }
