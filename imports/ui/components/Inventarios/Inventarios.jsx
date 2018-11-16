@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Footer from '../Footer/Footer';
-
 import './inventario.css';
-
-var estilo = {
-  width: '1%'
-};
-var estilo2 = {
-  width: '20%'
-};
 
 export class Inventario extends Component {
 
-
   render() {
+
+    var estilo = {
+      width: '1%'
+    };
+    var estilo2 = {
+      width: '20%'
+    };
+    
     return (
       <div className="Inventarios ">
         <div className="container body">

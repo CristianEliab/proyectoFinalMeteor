@@ -28,7 +28,7 @@ export class Volunteer extends Component {
 							<div className="col-lg-3 col-md-3 vol-wrap">
 								<div className="single-vol">
 									<div className="content">
-										<a href="#" target="_blank">
+										<a>
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" src="./maria.png" alt="" />
 											<div className="content-details fadeIn-bottom">
@@ -44,7 +44,7 @@ export class Volunteer extends Component {
 							<div className="col-lg-3 col-md-3 vol-wrap">
 								<div className="single-vol">
 									<div className="content">
-										<a href="#" target="_blank">
+										<a>
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" src="./nicolas.png" alt="" />
 											<div className="content-details fadeIn-bottom">
@@ -60,7 +60,7 @@ export class Volunteer extends Component {
 							<div className="col-lg-3 col-md-3 vol-wrap">
 								<div className="single-vol">
 									<div className="content">
-										<a href="#" target="_blank">
+										<a>
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" src="./steven.png" alt="" />
 											<div className="content-details fadeIn-bottom">
