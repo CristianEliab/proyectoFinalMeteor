@@ -13,7 +13,7 @@ export class Banner extends Component {
                                     Tu Donación <br></br>
                                     es Nuestra Inspiración
 								</h1>
-                                <a href="#donate" className="head-btn btn text-uppercase">DONA AHORA</a>
+                                <a href="/donar" className="head-btn btn text-uppercase">DONA AHORA</a>
                             </div>
                         </div>
                     </div>

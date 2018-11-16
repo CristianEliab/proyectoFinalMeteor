@@ -23,7 +23,6 @@ export class About extends Component {
 									<li>Menores costos para el envío de remesas.</li>
 									<li>Replicar el modelo a otras ciudades del país para abordar la problemática.</li>
 								</ol>
-								<button className="primary-btn mt-20 text-uppercase ">Leer más<span className="lnr lnr-arrow-right"></span></button>
 							</div>
 						</div>
 					</div>

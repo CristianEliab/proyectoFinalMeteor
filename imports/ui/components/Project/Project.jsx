@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Player } from 'video-react';
 
-
+import './proyecto.css';
 
 export class Project extends Component {
 	render() {
@@ -25,7 +24,7 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="350" width="311" src="./d1.jpg" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="#" className="head-btn btn text-uppercase">DONA AHORA</a>
+												<a href="/donar" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
@@ -44,7 +43,7 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="360" width="311" src="./d2.jpg" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="" className="head-btn btn text-uppercase">DONA AHORA</a>
+												<a href="/donar" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
@@ -62,7 +61,7 @@ export class Project extends Component {
 											<div className="content-overlay"></div>
 											<img className="content-image img-fluid d-block mx-auto" height="350" width="311" src="./vene.png" alt="" />
 											<div className="content-details fadeIn-bottom">
-												<a href="#" className="head-btn btn text-uppercase">DONA AHORA</a>
+												<a href="/donar" className="head-btn btn text-uppercase">DONA AHORA</a>
 											</div>
 										</div>
 									</div>
