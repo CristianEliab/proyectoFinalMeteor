@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import InventarioItem from './InventarioItem';
+import Modal from 'react-modal';
+
+// var CanvasJSReact = require('../../../../public/js/canvasjs.react');
+// import CanvasJSReact from './canvasjs.react';
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 import '../../css/nprogress.css';
 import './inventario.css';
@@ -10,32 +15,53 @@ export class Inventario extends Component {
     super(props);
     this.state = {
       name: this.props.name,
+      modalIsOpen: false,
       listaProductos: [
         {
           id: '1',
           nombre: 'Arroz',
-          n_voluntarios: ['1','2','3'],
+          n_voluntarios: ['1', '2', '3'],
           c_inventario: '10',
-          estado: 'danger'
+          estado: 'urgente'
         },
         {
           id: '2',
           nombre: 'Lentejas',
-          n_voluntarios: ['1','2'],
+          n_voluntarios: ['1', '2'],
           c_inventario: '99',
-          estado: 'success'
+          estado: 'disponible'
         },
         {
           id: '3',
           nombre: 'Pollo',
-          n_voluntarios: ['1','2','3'],
+          n_voluntarios: ['1', '2', '3'],
           c_inventario: '20',
-          estado: 'danger'
+          estado: 'urgente'
         }
       ]
-
     }
 
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+
+  }
+
+
+  componentDidMount() {
+    Modal.setAppElement('body');
+  }
+
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  afterOpenModal() {
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
 
   componentWillMount() {
@@ -57,64 +83,91 @@ export class Inventario extends Component {
     var estilo2 = {
       width: '20%'
     };
+
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+      }
+    };
+
+    const options = {
+      animationEnabled: true,
+      exportEnabled: true,
+      theme: "dark2", // "light1", "dark1", "dark2"
+      title: {
+        text: "Trip Expenses"
+      },
+      data: [{
+        type: "pie",
+        indexLabel: "{label}: {y}%",
+        startAngle: -90,
+        dataPoints: [
+          { y: 20, label: "Airfare" },
+          { y: 24, label: "Food & Drinks" },
+          { y: 20, label: "Accomodation" },
+          { y: 14, label: "Transportation" },
+          { y: 12, label: "Activities" },
+          { y: 10, label: "Misc" }
+        ]
+      }]
+    };
+
+
+
     return (
-      <div className="Inventarios ">
-        <div className="container body">
+      <div id="Inventario" className="Inventarios ">
+        <form>
+          <div className="container body">
 
-          <div className="inventario">
+            <div className="inventario">
 
-            <div className="right_col" role="main">
-              <div className="">
-                <div className="page-title">
-                  <div className="title_left">
-                    <h3>Inventario <small>Lista de productos de {this.props.name} </small></h3>
+              <div className="right_col" role="main">
+                <div className="">
+                  <div className="page-title">
+                    <div className="title_left">
+                      <h3>Inventario <small>Lista de productos de {this.props.name} </small></h3>
+                    </div>
                   </div>
-                </div>
 
-                <div className="clearfix"></div>
+                  <div className="clearfix"></div>
 
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="x_panel">
-                      <div className="x_title">
-                        <h2>Elementos Donados</h2>
-                        <ul className="nav navbar-right panel_toolbox">
-                          <li><a className="collapse-link"><i className="fa fa-chevron-up"></i></a>
-                          </li>
-                          <li className="dropdown">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i className="fa fa-wrench"></i></a>
-                            <ul className="dropdown-menu" role="menu">
-                              <li><a href="#">Settings 1</a>
-                              </li>
-                              <li><a href="#">Settings 2</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li><a className="close-link"><i className="fa fa-close"></i></a>
-                          </li>
-                        </ul>
-                        <div className="clearfix"></div>
-                      </div>
-                      <div className="x_content">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="x_panel">
+                        <div className="x_title">
+                          <h2>Elementos Donados</h2>
+                          <ul className="nav navbar-right panel_toolbox">
+                            <li><a className="collapse-link"><i className="fa fa-chevron-up"></i></a>
+                            </li>
+                          </ul>
+                          <div className="clearfix"></div>
+                        </div>
+                        <div className="x_content">
 
-                        <p>Todos los productos necesarios que se requieren para donación en la {this.props.name} </p>
+                          <p>Todos los productos necesarios que se requieren para donación en la {this.props.name} </p>
+                          <button type="button" className="btn btn-info" onClick={this.openModal}>Estadisticas del Centro de donación</button>
+                          <table className="table table-striped projects">
+                            <thead>
+                              <tr>
+                                <th style={estilo}>Identificador</th>
+                                <th style={estilo2}>Nombre del producto</th>
+                                <th>N° de voluntarios</th>
+                                <th>Cantidad en inventario</th>
+                                <th>Estado</th>
+                                <th style={estilo2}>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {productos}
+                            </tbody>
+                          </table>
 
-                        <table className="table table-striped projects">
-                          <thead>
-                            <tr>
-                              <th style={estilo}>Identificador</th>
-                              <th style={estilo2}>Nombre del producto</th>
-                              <th>N° de voluntarios</th>
-                              <th>Cantidad en inventario</th>
-                              <th>Estado</th>
-                              <th style={estilo2}>Acciones</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {productos}
-                          </tbody>
-                        </table>
-
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -122,8 +175,30 @@ export class Inventario extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </form>
 
+
+        <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal} style={customStyles} contentLabel="Example Modal">
+
+          <div className="col-md-4 col-sm-4 col-xs-12">
+            <div className="x_panel">
+              <div className="x_title">
+                <ul className="nav navbar-right panel_toolbox">
+                  <li><a className="close-link" onClick={this.closeModal}><i className="fa fa-close"></i></a></li>
+                </ul>
+                <div className="clearfix"></div>
+              </div>
+              <div id="modal" className="x_content">
+                <h1 ref={subtitle => this.subtitle = subtitle}>Gráfica</h1>
+                {/* <div>
+                  <CanvasJSChart options={options}/>
+                  
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </Modal>
 
         <footer className="footer-area section-gap">
           <div className="container">

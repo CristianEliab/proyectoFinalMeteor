@@ -30,12 +30,11 @@ export class InventarioItem extends Component {
                     <progress value={this.props.pro.c_inventario} max="100">{this.props.pro.c_inventario} %</progress>
                 </td>
                 <td>
-                    <button type="text" className={this.props.pro.estado == "success" ? "btn btn-success btn-xs" : "btn btn-danger btn-xs"}>{this.props.pro.estado}</button>
+                    <span className={this.props.pro.estado == "disponible" ? "badge badge-success btn-xs" : "badge badge-danger btn-xs"}>{this.props.pro.estado}</span>
                 </td>
-                <td>
-                    <a href="#" className="btn btn-primary btn-xs"><i className="fa fa-folder"></i> Ver </a>
-                    <a href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Editar </a>
-                    <a href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Eliminar </a>
+                <td className="acciones">
+                    <a id="registrar-donacion" href="#" className="btn btn-info btn-xs"><i className="fa fa-pencil"></i> Donar </a>
+                    <a id="eliminar-elemento" href="#" className="btn btn-danger btn-xs"><i className="fa fa-trash-o"></i> Eliminar </a>
                 </td>
             </tr >
         )
