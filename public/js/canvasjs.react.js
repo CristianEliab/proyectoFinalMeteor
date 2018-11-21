@@ -1,8 +1,7 @@
-import React from 'react';
-import * as CanvasJSReact from './canvasjs.min';
+var React = require('react');
+var CanvasJS = require('./canvasjs.min');
 
 class CanvasJSChart extends React.Component {
-	static _cjsContainerId = 0
 	constructor(props) {		
 		super(props);		
 		this.options = props.options ? props.options : {};		
@@ -34,12 +33,12 @@ class CanvasJSChart extends React.Component {
 			this.props.onRef(undefined);
 	}		
 	render() {		
-		//return React.createElement('div', { id: this.chartContainerId, style: this.containerProps });		
-		return <div id = {this.chartContainerId} style = {this.containerProps}/>		
+		return React.createElement('div', { id: this.chartContainerId, style: this.containerProps });		
+		// return <div id = {this.chartContainerId} style = {this.containerProps}/>		
 	}	
 }
 
-export default CanvasJSReact = {
+module.exports = {
     CanvasJSChart: CanvasJSChart,
     CanvasJS: CanvasJS
 };

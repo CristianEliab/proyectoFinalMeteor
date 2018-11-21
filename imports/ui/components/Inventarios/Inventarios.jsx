@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import InventarioItem from './InventarioItem';
 import Modal from 'react-modal';
 
-// var CanvasJSReact = require('../../../../public/js/canvasjs.react');
+
+import CanvasJSReact from '../../../../public/js/canvasjs.react';
 // import CanvasJSReact from './canvasjs.react';
-// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 import '../../css/nprogress.css';
 import './inventario.css';
@@ -181,23 +182,17 @@ export class Inventario extends Component {
         <Modal isOpen={this.state.modalIsOpen} onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal} style={customStyles} contentLabel="Example Modal">
 
-          <div className="col-md-4 col-sm-4 col-xs-12">
-            <div className="x_panel">
-              <div className="x_title">
-                <ul className="nav navbar-right panel_toolbox">
-                  <li><a className="close-link" onClick={this.closeModal}><i className="fa fa-close"></i></a></li>
-                </ul>
-                <div className="clearfix"></div>
-              </div>
-              <div id="modal" className="x_content">
-                <h1 ref={subtitle => this.subtitle = subtitle}>Gráfica</h1>
-                {/* <div>
-                  <CanvasJSChart options={options}/>
-                  
-                </div> */}
-              </div>
+          <div id="modal">
+            <ul className="nav navbar-right panel_toolbox">
+              <li><a className="close-link" onClick={this.closeModal}><i className="fa fa-close"></i></a></li>
+            </ul>
+            <div className="clearfix"></div>
+            <h1 ref={subtitle => this.subtitle = subtitle}>Gráfica</h1>
+            <div>
+              <CanvasJSChart options={options} />
             </div>
           </div>
+
         </Modal>
 
         <footer className="footer-area section-gap">
