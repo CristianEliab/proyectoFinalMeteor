@@ -15,6 +15,7 @@ export class Inventario extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      options_edit: null,
       name: this.props.name,
       modalIsOpen: false,
       listaProductos: [
@@ -69,12 +70,22 @@ export class Inventario extends Component {
     this.render();
   }
 
+  onAbrir(modal) {
+    this.setState({ modalIsOpen: modal });
+  }
+
+  handleEditar(opt) {
+    this.setState({
+      options_edit: opt,
+      modalIsOpen: true
+    });
+  }
+
   render() {
 
-    console.log(this.state.listaProductos);
     var productos = this.state.listaProductos.map(producto => {
       return (
-        <InventarioItem pro={producto} key={producto.id}></InventarioItem>
+        <InventarioItem pro={producto} key={producto.id} onClickItem={this.handleEditar.bind(this)}></InventarioItem>
       );
     })
 
@@ -97,25 +108,56 @@ export class Inventario extends Component {
     };
 
     const options = {
-      animationEnabled: true,
-      exportEnabled: true,
-      theme: "dark2", // "light1", "dark1", "dark2"
+      aanimationEnabled: true,
+      theme: "light2",
       title: {
-        text: "Trip Expenses"
+        text: "Estado temporal de x"
       },
-      data: [{
-        type: "pie",
-        indexLabel: "{label}: {y}%",
-        startAngle: -90,
-        dataPoints: [
-          { y: 20, label: "Airfare" },
-          { y: 24, label: "Food & Drinks" },
-          { y: 20, label: "Accomodation" },
-          { y: 14, label: "Transportation" },
-          { y: 12, label: "Activities" },
-          { y: 10, label: "Misc" }
-        ]
-      }]
+      axisX: {
+        valueFormatString: "DD MMM",
+        crosshair: {
+          enabled: true,
+          snapToDataPoint: true
+        }
+      },
+      axisY: {
+        title: "Cantidad de artículos",
+        crosshair: {
+          enabled: true
+        }
+      },
+      toolTip: {
+        shared: true
+      },
+      legend: {
+        cursor: "pointer",
+        verticalAlign: "bottom",
+        horizontalAlign: "left",
+        dockInsidePlotArea: true,
+      },
+      data: [
+        {
+          type: "line",
+          showInLegend: true,
+          name: "Unique Visit",
+          lineDashType: "dash",
+          dataPoints: [
+            { x: new Date(2017, 0, 3), y: 510 },
+            { x: new Date(2017, 0, 4), y: 560 },
+            { x: new Date(2017, 0, 5), y: 540 },
+            { x: new Date(2017, 0, 6), y: 558 },
+            { x: new Date(2017, 0, 7), y: 544 },
+            { x: new Date(2017, 0, 8), y: 693 },
+            { x: new Date(2017, 0, 9), y: 657 },
+            { x: new Date(2017, 0, 10), y: 663 },
+            { x: new Date(2017, 0, 11), y: 639 },
+            { x: new Date(2017, 0, 12), y: 673 },
+            { x: new Date(2017, 0, 13), y: 660 },
+            { x: new Date(2017, 0, 14), y: 562 },
+            { x: new Date(2017, 0, 15), y: 643 },
+            { x: new Date(2017, 0, 16), y: 570 }
+          ]
+        }]
     };
 
 
@@ -151,7 +193,6 @@ export class Inventario extends Component {
                         <div className="x_content">
 
                           <p>Todos los productos necesarios que se requieren para donación en la {this.props.name} </p>
-                          <button type="button" className="btn btn-info" onClick={this.openModal}>Estadisticas del Centro de donación</button>
                           <table className="table table-striped projects">
                             <thead>
                               <tr>
@@ -189,7 +230,7 @@ export class Inventario extends Component {
             <div className="clearfix"></div>
             <h1 ref={subtitle => this.subtitle = subtitle}>Gráfica</h1>
             <div>
-              <CanvasJSChart options={options} />
+              <CanvasJSChart options={this.state.options_edit} />
             </div>
           </div>
 
