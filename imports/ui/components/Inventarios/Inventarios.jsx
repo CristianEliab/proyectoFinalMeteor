@@ -107,61 +107,6 @@ export class Inventario extends Component {
       }
     };
 
-    const options = {
-      aanimationEnabled: true,
-      theme: "light2",
-      title: {
-        text: "Estado temporal de x"
-      },
-      axisX: {
-        valueFormatString: "DD MMM",
-        crosshair: {
-          enabled: true,
-          snapToDataPoint: true
-        }
-      },
-      axisY: {
-        title: "Cantidad de artículos",
-        crosshair: {
-          enabled: true
-        }
-      },
-      toolTip: {
-        shared: true
-      },
-      legend: {
-        cursor: "pointer",
-        verticalAlign: "bottom",
-        horizontalAlign: "left",
-        dockInsidePlotArea: true,
-      },
-      data: [
-        {
-          type: "line",
-          showInLegend: true,
-          name: "Unique Visit",
-          lineDashType: "dash",
-          dataPoints: [
-            { x: new Date(2017, 0, 3), y: 510 },
-            { x: new Date(2017, 0, 4), y: 560 },
-            { x: new Date(2017, 0, 5), y: 540 },
-            { x: new Date(2017, 0, 6), y: 558 },
-            { x: new Date(2017, 0, 7), y: 544 },
-            { x: new Date(2017, 0, 8), y: 693 },
-            { x: new Date(2017, 0, 9), y: 657 },
-            { x: new Date(2017, 0, 10), y: 663 },
-            { x: new Date(2017, 0, 11), y: 639 },
-            { x: new Date(2017, 0, 12), y: 673 },
-            { x: new Date(2017, 0, 13), y: 660 },
-            { x: new Date(2017, 0, 14), y: 562 },
-            { x: new Date(2017, 0, 15), y: 643 },
-            { x: new Date(2017, 0, 16), y: 570 }
-          ]
-        }]
-    };
-
-
-
     return (
       <div id="Inventario" className="Inventarios ">
         <form>

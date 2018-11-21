@@ -6,6 +6,8 @@ import AppContainer from '../../ui/containers/AppContainer.jsx';
 import MainContainer from '../../ui/containers/MainContainer.jsx';
 import DonateContainer from '../../ui/containers/DonateContainer.jsx';
 import InventarioContainer from '../../ui/containers/InventariosContainer.jsx';
+import ProductosContainer from '../../ui/containers/ProductosContainer.jsx';
+
 
 // pages
 import SignupPage from '../../ui/pages/SignupPage.jsx';
@@ -35,6 +37,7 @@ export class Routes extends Component {
           <Route path="/signup" component={SignupPage} />
           <Route path="/home" component={MainContainer} />
           <Route path="/donar" component={DonateContainer} />
+          <Route path="/productos" component={ProductosContainer} />
           <Route path="/inventario" component={InventarioContainer} />
           <Route exact={true} path="/" component={AppContainer} />
         </div>

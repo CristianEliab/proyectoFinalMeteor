@@ -56,6 +56,8 @@ export class InventariosPage extends Component {
                 <div className="main-menubar d-flex align-items-center">
                   <nav className="hide">
                     <a href="#" onClick={this.logout}>Logout</a>
+                    <a href="./productos" >Productos</a>
+                    <a href="./inventario" >Inventario</a>
                   </nav>
                   <div className="menu-bar"><span className="lnr lnr-menu"></span></div>
                 </div>
