@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InventarioItem from './InventarioItem';
+import { render } from 'react-dom';
 import Modal from 'react-modal';
 
 
@@ -68,10 +69,6 @@ export class Inventario extends Component {
 
   componentWillMount() {
     this.render();
-  }
-
-  onAbrir(modal) {
-    this.setState({ modalIsOpen: modal });
   }
 
   handleEditar(opt) {

@@ -16,7 +16,7 @@
 }
 
 .badge {
-    margin-top: 12px;
+    margin-top: 10%;
     font-size: 85%;
     width: 70%;
 }
@@ -26,11 +26,13 @@
     padding: 5%;
 }
 
-#registrar-donacion{
+#ver-elemento{
+    margin-top: 2%;
     margin-left: 2%;
 }
 
 #eliminar-elemento{
+    margin-top: 2%;
     margin-left: 2%;
 }
 

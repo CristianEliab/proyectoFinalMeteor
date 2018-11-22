@@ -4,6 +4,11 @@ import Producto from '../components/Productos/Producto';
 
 export class ProductosPage extends Component {
     render() {
+
+        let currentUser = this.props.currentUser;
+        let userDataAvailable = (currentUser !== undefined);
+        let loggedIn = (currentUser && userDataAvailable);
+        
         return (
             <div>
                 <header className="default-header">
@@ -15,9 +20,9 @@ export class ProductosPage extends Component {
                                 </div>
                                 <div className="main-menubar d-flex align-items-center">
                                     <nav className="hide">
-                                        <a href="#" onClick={this.logout}>Logout</a>
                                         <a href="./productos" >Productos</a>
                                         <a href="./inventario" >Inventario</a>
+                                        <a href="#" onClick={this.logout}>Logout</a>
                                     </nav>
                                     <div className="menu-bar"><span className="lnr lnr-menu"></span></div>
                                 </div>
@@ -25,7 +30,7 @@ export class ProductosPage extends Component {
                         </div>
                     </div>
                 </header>
-                <Producto></Producto>
+                <Producto name={loggedIn ? 'Organización ' + currentUser.username : ''} ></Producto>
             </div>
         )
     }

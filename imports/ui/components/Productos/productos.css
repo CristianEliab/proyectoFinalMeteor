@@ -1,0 +1,31 @@
+div#productos-page{
+    font-size: 1.2em;
+}
+
+div#productos-page {
+    margin-top: 7%;
+}
+
+div#lista-productos {
+    width: 60%;
+}
+
+.react-numeric-input{
+    width: 60% !important;
+}
+
+.acciones{
+    margin-top: 7%;
+}
+
+#guardar-boton{
+    width: 30%;
+    font-size: 1em;
+    margin-left: 2%;
+}
+
+#cancelar-boton{    
+    font-size: 1em;
+    width: 30%;
+    margin-left: 2%;
+}

@@ -42,8 +42,6 @@ export class InventariosPage extends Component {
     let userDataAvailable = (currentUser !== undefined);
     let loggedIn = (currentUser && userDataAvailable);
 
-    console.log(currentUser);
-
     return (
       <div>
         <header className="default-header">
@@ -55,9 +53,9 @@ export class InventariosPage extends Component {
                 </div>
                 <div className="main-menubar d-flex align-items-center">
                   <nav className="hide">
-                    <a href="#" onClick={this.logout}>Logout</a>
                     <a href="./productos" >Productos</a>
                     <a href="./inventario" >Inventario</a>
+                    <a href="#" onClick={this.logout}>Logout</a>
                   </nav>
                   <div className="menu-bar"><span className="lnr lnr-menu"></span></div>
                 </div>
