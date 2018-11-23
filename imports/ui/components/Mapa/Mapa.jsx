@@ -11,6 +11,7 @@ export class Mapa extends Component {
         super(props);
         this.state = {
             showingInfoWindow: false,
+            change: 1, 
             activeMarker: {},
             selectedPlace: {},
             infoMarcadores: [
@@ -46,23 +47,42 @@ export class Mapa extends Component {
         };
     }
 
-    /** 
-//Cuando se hace click en el mapa llama a esta función
-onMapClicked(mapProps, map, clickEvent) {
-  console.log("latitud " + mapProps.lat);
-  console.log("longitud " + mapProps.lat);
-}
 
-//Cuando se hace click en el marcador llama a esta función
-onMarkerClick(props, marker, e) {
-  console.log(marker.name);
-}
+    //Cuando se hace click en el mapa llama a esta función
+    onMapClicked(mapProps, map, clickEvent) {
 
-//Cuando se hace pasa el mouse sobre el marcador llama a esta función
-onMouseoverMarker(props, marker, e) {
-  console.log(marker.name);
-}
-*/
+        var latitud = clickEvent.latLng.lat();
+        var longitud = clickEvent.latLng.lng();
+
+        console.log("latitud " + latitud);
+        console.log("longitud " + longitud);
+        
+        //Aquí agrego un nuevo marcador
+        var marcador = {
+            "id": 4,
+            "nombre": "Arquidiócesis de Cali",
+            "latitud": latitud,
+            "longitud": longitud,
+            "articulos": "NUEVO NUEVO NUEVO",
+            "img": "./arquidiocesis.jpg",
+            "direccion": "DIRECCIÓN NUEVA"
+        }
+
+        this.state.infoMarcadores.push(marcador);
+        this.setState({change: this.state.change++});
+        console.log(this.state);
+    }
+    /**
+    //Cuando se hace click en el marcador llama a esta función
+    onMarkerClick(props, marker, e) {
+      console.log(marker.name);
+    }
+    
+    //Cuando se hace pasa el mouse sobre el marcador llama a esta función
+    onMouseoverMarker(props, marker, e) {
+      console.log(marker.name);
+    }
+    */
 
     //Para controlar la ventana de los marcadores
     estado = {
@@ -70,17 +90,17 @@ onMouseoverMarker(props, marker, e) {
         activeMarker: {},
         selectedPlace: {},
     };
-
-    //Cuando da click en el mapa se cierra la ventana
-    onMapClicked = (props) => {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            })
-        }
-    };
-
+    /**
+        //Cuando da click en el mapa se cierra la ventana
+        onMapClicked = (props) => {
+            if (this.state.showingInfoWindow) {
+                this.setState({
+                    showingInfoWindow: false,
+                    activeMarker: null
+                })
+            }
+        };
+     */
     onMarkerClick = (props, marker, e) =>
         this.setState({
             selectedPlace: props,
@@ -111,7 +131,7 @@ onMouseoverMarker(props, marker, e) {
 
 
 
-        var listaMarcadores = this.state.infoMarcadores.map(
+      var  listaMarcadores = this.state.infoMarcadores.map(
             marcador => {
 
                 return (
@@ -119,11 +139,11 @@ onMouseoverMarker(props, marker, e) {
                         key={marcador.id}
                         onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
-                        position={{ lat: marcador.latitud, lng: marcador.longitud }} 
+                        position={{ lat: marcador.latitud, lng: marcador.longitud }}
                         nombre={marcador.nombre}
                         articulos={marcador.articulos}
                         img={marcador.img}
-                        direccion={marcador.direccion}/>
+                        direccion={marcador.direccion} />
                 );
             }
         );
@@ -139,7 +159,7 @@ onMouseoverMarker(props, marker, e) {
                         lng: -76.522487
                     }}
                     zoom={13}
-                    onClick={this.onMapClicked} >
+                    onClick={this.onMapClicked.bind(this)} >
 
                     {listaMarcadores}
 
