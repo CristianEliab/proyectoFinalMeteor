@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './mapa.css';
+import Modal from 'react-modal';
+import { Colleccion } from '../../../api/Collections.jsx';
+import { Meteor } from 'meteor/meteor';
 const MY_API_KEY = "AIzaSyBioI0V6qQMOQMdNzbbB6rmCAU4rWWpzmo";
+import { withTracker } from 'meteor/react-meteor-data';
+
 
 
 
@@ -10,8 +15,14 @@ export class Mapa extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            nombreTmp: "",
+            articulosTmp: "",
+            direccionTmp: "",
+            imagenTmp: "",
+            latitudTmp: "",
+            longitudTmp: "",
             showingInfoWindow: false,
-            change: 1, 
+            change: 5,
             activeMarker: {},
             selectedPlace: {},
             infoMarcadores: [
@@ -45,6 +56,11 @@ export class Mapa extends Component {
                 }
             ]
         };
+
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+
     }
 
 
@@ -54,12 +70,19 @@ export class Mapa extends Component {
         var latitud = clickEvent.latLng.lat();
         var longitud = clickEvent.latLng.lng();
 
-        console.log("latitud " + latitud);
-        console.log("longitud " + longitud);
-        
+        this.setState({
+            latitudTmp: latitud,
+            longitudTmp: longitud
+        });
+
+        //Aquí necesito abrir una ventana
+        this.openModal();
+
+
         //Aquí agrego un nuevo marcador
+        /**
         var marcador = {
-            "id": 4,
+            "id": this.setState.change,
             "nombre": "Arquidiócesis de Cali",
             "latitud": latitud,
             "longitud": longitud,
@@ -67,10 +90,27 @@ export class Mapa extends Component {
             "img": "./arquidiocesis.jpg",
             "direccion": "DIRECCIÓN NUEVA"
         }
+         
+
+        //OTRA FORMA DE AGREGAR
+        //var tmp = this.state.infoMarcadores;
+        //tmp.push(marcador);
+        // this.setState({infoMarcadores: tmp});
 
         this.state.infoMarcadores.push(marcador);
-        this.setState({change: this.state.change++});
+        this.setState({ change: this.state.change + 1 });
         console.log(this.state);
+
+        */
+
+        //Cierra la ventana abierta
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            })
+        }
+
     }
     /**
     //Cuando se hace click en el marcador llama a esta función
@@ -118,6 +158,47 @@ export class Mapa extends Component {
 
     }
 
+    componentDidMount() {
+        Modal.setAppElement('body');
+    }
+
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    afterOpenModal() {
+        // references are now sync'd and can be accessed.
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+
+    }
+
+    updateInput(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    onGuardar(e) {
+        //Aquí se guarda
+        var organizacion = {
+            "id": 99,
+            "nombre": this.state.nombreTmp,
+            "latitud": this.state.latitudTmp,
+            "longitud": this.state.longitudTmp,
+            "articulos": this.state.articulosTmp,
+            "img": this.setState.imagenTmp,
+            "direccion": this.state.direccionTmp
+        };
+
+        organizacion._id = Math.random().toString(36).substring(2, 9);
+        //Collection
+        Meteor.call('organizacion.insert', organizacion);
+
+    }
+
 
 
 
@@ -128,10 +209,19 @@ export class Mapa extends Component {
             height: '100%',
         }
 
+        const customStyles = {
+            content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)'
+            }
+        };
 
 
-
-      var  listaMarcadores = this.state.infoMarcadores.map(
+        var listaMarcadores = this.state.infoMarcadores.map(
             marcador => {
 
                 return (
@@ -149,61 +239,130 @@ export class Mapa extends Component {
         );
 
         return (
-            <div className="seccionMapa">
+            <div>
 
-                <Map
-                    style={estiloMapa}
-                    google={this.props.google}
-                    initialCenter={{
-                        lat: 3.423901,
-                        lng: -76.522487
-                    }}
-                    zoom={13}
-                    onClick={this.onMapClicked.bind(this)} >
+                <div className="seccionMapa">
 
-                    {listaMarcadores}
+                    <Map
+                        key="99"
+                        id="99"
+                        style={estiloMapa}
+                        google={this.props.google}
+                        initialCenter={{
+                            lat: 3.423901,
+                            lng: -76.522487
+                        }}
+                        zoom={13}
+                        onClick={this.onMapClicked.bind(this)} >
 
-                    <InfoWindow
-                        onOpen={this.windowHasOpened}
-                        onClose={this.windowHasClosed}
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}>
+                        {listaMarcadores}
 
-                        <div className="ventanaInfo">
+                        <InfoWindow
+                            onOpen={this.windowHasOpened}
+                            onClose={this.windowHasClosed}
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}>
 
-                            <div className="ventanaInfoTitulo">
-                                <h3>{this.state.selectedPlace.nombre}</h3>
+                            <div className="ventanaInfo">
+
+                                <div className="ventanaInfoTitulo">
+                                    <h3>{this.state.selectedPlace.nombre}</h3>
+                                </div>
+
+                                <div className="row">
+
+                                    <div className="col">
+                                        <div className="imgOrganizaciones">
+                                            <img src={this.state.selectedPlace.img} />
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
+                                        <div className="listaArticulosDemanda">
+                                            <p>{this.state.selectedPlace.articulos}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div className="direccion">
+                                    <p>{this.state.selectedPlace.direccion}</p>
+                                </div>
+                                <div id="btnRegistrar">
+                                    <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
+                                </div>
+
+                            </div>
+                        </InfoWindow>
+
+                    </Map>
+
+
+                </div>
+
+
+                <div>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal"
+                    >
+
+                        <h2>Ingrese los datos de la organización</h2>
+                        <form>
+                            <div className="row">
+                                <div className="col" id="campoIngresar">
+                                    <output>Nombre: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="nombreTmp" value={this.state.nombreTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
                             </div>
 
                             <div className="row">
-
-                                <div className="col">
-                                    <div className="imgOrganizaciones">
-                                        <img src={this.state.selectedPlace.img} />
-                                    </div>
+                                <div className="col" id="campoIngresar">
+                                    <output>Artículos: </output>
                                 </div>
-                                <div className="col">
-                                    <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
-                                    <div className="listaArticulosDemanda">
-                                        <p>{this.state.selectedPlace.articulos}</p>
-                                    </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="articulosTmp" value={this.state.articulosTmp} onChange={this.updateInput.bind(this)} />
                                 </div>
-
                             </div>
 
-                            <div className="direccion">
-                                <p>{this.state.selectedPlace.direccion}</p>
-                            </div>
-                            <div id="btnRegistrar">
-                                <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
+                            <div className="row" >
+                                <div className="col" id="campoIngresar">
+                                    <output>Dirección: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="direccionTmp" value={this.state.direccionTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
                             </div>
 
-                        </div>
-                    </InfoWindow>
+                            <div className="row">
+                                <div className="col" id="campoIngresar">
+                                    <output>Imagen: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="imagenTmp" value={this.state.imagenTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
+                            </div>
 
-                </Map>
+                            <div id="botonSubmit">
+                                <button className="btn btn-primary" onSubmit={this.onGuardar.bind(this)} >Guardar</button>
+                            </div>
+
+
+                        </form>
+
+
+                    </Modal>
+                </div>
 
             </div>
+
+
+
         )
     }
 }
@@ -211,3 +370,13 @@ export class Mapa extends Component {
 export default GoogleApiWrapper({
     apiKey: (MY_API_KEY)
 })(Mapa)
+ 
+/**
+export default withTracker(() => {
+    Meteor.subscribe('organizaciones');
+    return {
+        infoMarcadores: Colleccion.find({}).fetch(),
+        //usuario: Meteor.user(),
+    };
+})(Mapa);
+ */
