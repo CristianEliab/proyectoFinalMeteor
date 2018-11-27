@@ -20,6 +20,10 @@
     text-align: center;
     font-weight: bold;
 }
+.descripcion{
+    margin-top: 15px;
+    text-align: center;
+}
 .imgOrganizaciones{
     text-align: center;
 }

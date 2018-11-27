@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-const MY_API_KEY = "AIzaSyBioI0V6qQMOQMdNzbbB6rmCAU4rWWpzmo";
+const MY_API_KEY = "AIzaSyAzwOeKC4njhutFl9TZ5MMXT19S5OKIgyw";
 import Modal from 'react-modal';
 import './mapa.css';
 
@@ -16,41 +16,11 @@ export class MapaItem extends Component {
             imagenTmp: "",
             latitudTmp: "",
             longitudTmp: "",
+            descripcionTmp: "",
             showingInfoWindow: false,
             change: 5,
             activeMarker: {},
             selectedPlace: {},
-            infoMarcadores: [
-                {
-                    "id": 1,
-                    "nombre": "Cruz Roja Colombiana Cali",
-                    "latitud": "3.427135",
-                    "longitud": "-76.545069",
-                    "articulos": "Lenteja, Harina de Maíz, Arroz, Azúcar, Frijol.",
-                    "img": "./cruzroja.jpg",
-                    "direccion": "Cra. 38 Bis #5-91, Cali, Valle del Cauca"
-
-                },
-                {
-                    "id": 2,
-                    "nombre": "Banco de Alimentos Cali",
-                    "latitud": "3.454441",
-                    "longitud": "-76.520135",
-                    "articulos": "Sal, Panela, Café, Chocolate, Aceite.",
-                    "img": "./bancodealimentos.jpg",
-                    "direccion": "Cl. 24 #6-103, Cali, Valle del Cauca"
-                },
-                {
-                    "id": 3,
-                    "nombre": "Arquidiócesis de Cali",
-                    "latitud": "3.450946",
-                    "longitud": "-76.535900",
-                    "articulos": "Leche en polvo, Bocadillo, Pasta, Atún.",
-                    "img": "./arquidiocesis.jpg",
-                    "direccion": "Cra. 4 #7-17, Cali, Valle del Cauca"
-                }
-            ],
-            infoOrganizaciones: this.props.listaOrganizaciones,
         };
 
         this.openModal = this.openModal.bind(this);
@@ -72,29 +42,7 @@ export class MapaItem extends Component {
 
         //Aquí necesito abrir una ventana
         this.openModal();
-
-
-        //Aquí agrego un nuevo marcador
-        /**
-        var marcador = {
-            "id": this.setState.change,
-            "nombre": "Arquidiócesis de Cali",
-            "latitud": latitud,
-            "longitud": longitud,
-            "articulos": "NUEVO NUEVO NUEVO",
-            "img": "./arquidiocesis.jpg",
-            "direccion": "DIRECCIÓN NUEVA"
-        }
-         
-        //OTRA FORMA DE AGREGAR
-        //var tmp = this.state.infoMarcadores;
-        //tmp.push(marcador);
-        // this.setState({infoMarcadores: tmp});
-        this.state.infoMarcadores.push(marcador);
-        this.setState({ change: this.state.change + 1 });
-        console.log(this.state);
-       
-
+        
         //Cierra la ventana abierta
         if (this.state.showingInfoWindow) {
             this.setState({
@@ -102,7 +50,7 @@ export class MapaItem extends Component {
                 activeMarker: null
             })
         }
-         */
+         
 
     }
 
@@ -139,48 +87,67 @@ export class MapaItem extends Component {
         selectedPlace: {},
     };
 
+    onLimpiar(e) {
+
+        this.setState({
+            nombreTmp: "",
+            articulosTmp: "",
+            direccionTmp: "",
+            imagenTmp: "",
+            latitudTmp: "",
+            longitudTmp: "",
+            descripcionTmp: "",
+            showingInfoWindow: false,
+        });
+    }
+
 
     onGuardar(e) {
 
-        //Cierra la ventana abierta
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            })
+        this.closeModal();
+
+        e.preventDefault();
+
+        /**
+        if (this.state.nombreTmp != "" && this.state.articulosTmp && "" && this.state.imagenTmp != ""
+            && this.state.direccionTmp != "" && this.state.descripcionTmp != "")
+ */
+
+        if (this.state.nombreTmp != "" && this.state.articulosTmp != "" && this.state.imagenTmp != ""
+            && this.state.direccionTmp != "" && this.state.descripcionTmp != "") {
+            console.log("CAMPOS COMPLETOS")
+
+            //Aquí se guarda
+            var organizacion = {
+                id: this.setState.change,
+                nombre: this.state.nombreTmp,
+                latitud: this.state.latitudTmp,
+                longitud: this.state.longitudTmp,
+                articulos: this.state.articulosTmp,
+                img: this.state.imagenTmp,
+                direccion: this.state.direccionTmp,
+                descripcion: this.state.descripcionTmp,
+                administrador: {},
+                productos: {},
+                donaciones: {},
+            };
+
+            console.log(organizacion)
+
+            //this.props.listaOrganizaciones.push(organizacion);
+
+            this.props.guardar(organizacion);
+
+            this.setState({ change: this.state.change + 1 });
+
+            this.onLimpiar();
+
+        }
+        else {
+            console.log("CAMPOS IMCOMPLETOS")
         }
 
-        //Aquí se guarda
-        var organizacion = {
-            id: this.setState.change,
-            nombre: this.state.nombreTmp,
-            latitud: this.state.latitudTmp,
-            longitud: this.state.longitudTmp,
-            articulos: this.state.articulosTmp,
-            img: this.setState.imagenTmp,
-            direccion: this.state.direccionTmp
-        };
 
-        //Agrego el nuevo marcador al estado 
-        this.state.infoMarcadores.push(organizacion);
-        this.setState({ change: this.state.change + 1 });
-        console.log(this.state);
-
-        //e.preventDefault();
-        //this.props.guardar(organizacion);
-
-        //
-        this.setState({
-            id: "",
-            nombreTmp: "",
-            latitudTmp: "",
-            longitudTmp: "",
-            articulosTmp: "",
-            imagenTmp: "",
-            direccionTmp: ""
-        });
-
-        console.log("PASO ONGUARDAR AL FINAL")
 
     }
 
@@ -204,19 +171,21 @@ export class MapaItem extends Component {
         };
 
 
-        var listaMarcadores = this.state.infoMarcadores.map(
+        //para la lista quemada
+        var listaMarcadores = this.props.listaOrganizaciones.map(
             marcador => {
 
                 return (
                     <Marker
-                        key={marcador.id}
-                        onMouseover={this.onMouseoverMarker}
                         onClick={this.onMarkerClick}
+                        key={marcador.id}
+                        id={marcador.id}
+                        nombre={marcador.nombre_organizacion}
                         position={{ lat: marcador.latitud, lng: marcador.longitud }}
-                        nombre={marcador.nombre}
                         articulos={marcador.articulos}
                         img={marcador.img}
-                        direccion={marcador.direccion} />
+                        direccion={marcador.direccion}
+                        descripcion={marcador.descripcion} />
                 );
             }
         );
@@ -266,6 +235,11 @@ export class MapaItem extends Component {
                                 <div className="direccion">
                                     <p>{this.state.selectedPlace.direccion}</p>
                                 </div>
+
+                                <div className="descripcion">
+                                    <p>{this.state.selectedPlace.descripcion}</p>
+                                </div>
+
                                 <div id="btnRegistrar">
                                     <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
                                 </div>
@@ -286,7 +260,7 @@ export class MapaItem extends Component {
                         contentLabel="Example Modal">
                         <h2>Ingrese los datos de la organización</h2>
 
-                        <form >
+                        <form onSubmit={this.onGuardar.bind(this)}>
                             <div className="row">
                                 <div className="col" id="campoIngresar">
                                     <output>Nombre: </output>
@@ -319,13 +293,23 @@ export class MapaItem extends Component {
                                     <input type="text" name="imagenTmp" value={this.state.imagenTmp} onChange={this.updateInput.bind(this)} />
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col" id="campoIngresar">
+                                    <output>Descripción del lugar: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="descripcionTmp" value={this.state.descripcionTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
+                            </div>
+
                             <div id="botonSubmit">
-                                <button className="btn btn-primary" onSubmit={this.onGuardar.bind(this)} type="submit">Guardar</button>
+                                <button className="btn btn-primary">Guardar</button>
                             </div>
                         </form>
 
                     </Modal>
                 </div>
+
             </div>
         );
     }

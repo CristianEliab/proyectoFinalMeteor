@@ -23,37 +23,17 @@ export class Mapa extends Component {
         };
     }
 
-
     handleGuardar(organizacion) {
         organizacion._id = Math.random().toString(36).substring(2, 9);
         //Collection
-        Meteor.call('organizacion.insert', organizacion);
+        Meteor.call('organizaciones.insert', organizacion);
     }
 
     render() {
-        console.log(this.props.infoMarcadores);
-        var listaMarcadores = this.props.infoMarcadores.map(
-            marcador => {
-                console.log(marcador.nombre_organizacion);
-                console.log(marcador.longitud);
-                return (
-                    
-                    <Marker
-                        key={marcador.id}
-                        onMouseover={this.onMouseoverMarker}
-                        onClick={this.onMarkerClick}
-                        position={{ lat: marcador.latitud, lng: marcador.longitud }}
-                        nombre={marcador.nombre}
-                        articulos={marcador.articulos}
-                        img={marcador.img}
-                        direccion={marcador.direccion} />
-                );
-            }
-        );
-        return (
+        return (            
             <div>
                 <div className="seccionMapa">
-                    <MapaItem listaOrganizaciones={listaMarcadores} guardar={this.handleGuardar.bind(this)} ></MapaItem>
+                    <MapaItem listaOrganizaciones={this.props.infoMarcadores} guardar={this.handleGuardar.bind(this)} ></MapaItem>
                 </div>
             </div>
         );
