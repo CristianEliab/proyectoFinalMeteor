@@ -93,7 +93,7 @@ export class MapaItem extends Component {
         this.state.infoMarcadores.push(marcador);
         this.setState({ change: this.state.change + 1 });
         console.log(this.state);
-        */
+       
 
         //Cierra la ventana abierta
         if (this.state.showingInfoWindow) {
@@ -102,6 +102,7 @@ export class MapaItem extends Component {
                 activeMarker: null
             })
         }
+         */
 
     }
 
@@ -140,9 +141,18 @@ export class MapaItem extends Component {
 
 
     onGuardar(e) {
+
+        //Cierra la ventana abierta
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            })
+        }
+
         //Aquí se guarda
         var organizacion = {
-            id: 99,
+            id: this.setState.change,
             nombre: this.state.nombreTmp,
             latitud: this.state.latitudTmp,
             longitud: this.state.longitudTmp,
@@ -150,17 +160,27 @@ export class MapaItem extends Component {
             img: this.setState.imagenTmp,
             direccion: this.state.direccionTmp
         };
-        e.preventDefault();
-        this.props.guardar(organizacion);
+
+        //Agrego el nuevo marcador al estado 
+        this.state.infoMarcadores.push(organizacion);
+        this.setState({ change: this.state.change + 1 });
+        console.log(this.state);
+
+        //e.preventDefault();
+        //this.props.guardar(organizacion);
+
+        //
         this.setState({
             id: "",
-            nombre: "",
-            latitud: "",
-            longitud: "",
-            articulos: "",
-            img: "",
-            direccion: ""
+            nombreTmp: "",
+            latitudTmp: "",
+            longitudTmp: "",
+            articulosTmp: "",
+            imagenTmp: "",
+            direccionTmp: ""
         });
+
+        console.log("PASO ONGUARDAR AL FINAL")
 
     }
 
@@ -203,109 +223,110 @@ export class MapaItem extends Component {
 
         return (
             <div>
-            <div className="seccionMapa">
-                <Map
-                    key="99"
-                    id="99"
-                    style={estiloMapa}
-                    google={this.props.google}
-                    initialCenter={{
-                        lat: 3.423901,
-                        lng: -76.522487
-                    }}
-                    zoom={13}
-                    onClick={this.onMapClicked.bind(this)} >
+                <div className="seccionMapa">
+                    <Map
+                        key="99"
+                        id="99"
+                        style={estiloMapa}
+                        google={this.props.google}
+                        initialCenter={{
+                            lat: 3.423901,
+                            lng: -76.522487
+                        }}
+                        zoom={13}
+                        onClick={this.onMapClicked.bind(this)} >
 
-                    {listaMarcadores}
+                        {listaMarcadores}
 
-                    <InfoWindow
-                        onOpen={this.windowHasOpened}
-                        onClose={this.windowHasClosed}
-                        marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}>
+                        <InfoWindow
+                            onOpen={this.windowHasOpened}
+                            onClose={this.windowHasClosed}
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}>
 
-                        <div className="ventanaInfo">
-                            <div className="ventanaInfoTitulo">
-                                <h3>{this.state.selectedPlace.nombre}</h3>
+                            <div className="ventanaInfo">
+                                <div className="ventanaInfoTitulo">
+                                    <h3>{this.state.selectedPlace.nombre}</h3>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <div className="imgOrganizaciones">
+                                            <img src={this.state.selectedPlace.img} />
+                                        </div>
+                                    </div>
+                                    <div className="col">
+                                        <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
+                                        <div className="listaArticulosDemanda">
+                                            <p>{this.state.selectedPlace.articulos}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="direccion">
+                                    <p>{this.state.selectedPlace.direccion}</p>
+                                </div>
+                                <div id="btnRegistrar">
+                                    <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
+                                </div>
+
                             </div>
+                        </InfoWindow>
+                    </Map>
 
+                </div>
+
+
+                <div>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={customStyles}
+                        contentLabel="Example Modal">
+                        <h2>Ingrese los datos de la organización</h2>
+
+                        <form >
                             <div className="row">
-                                <div className="col">
-                                    <div className="imgOrganizaciones">
-                                        <img src={this.state.selectedPlace.img} />
-                                    </div>
+                                <div className="col" id="campoIngresar">
+                                    <output>Nombre: </output>
                                 </div>
-                                <div className="col">
-                                    <h6 id="tituloArticulosDemanda">Artículos en demanda</h6>
-                                    <div className="listaArticulosDemanda">
-                                        <p>{this.state.selectedPlace.articulos}</p>
-                                    </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="nombreTmp" value={this.state.nombreTmp} onChange={this.updateInput.bind(this)} />
                                 </div>
                             </div>
-
-                            <div className="direccion">
-                                <p>{this.state.selectedPlace.direccion}</p>
+                            <div className="row">
+                                <div className="col" id="campoIngresar">
+                                    <output>Artículos: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="articulosTmp" value={this.state.articulosTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
                             </div>
-                            <div id="btnRegistrar">
-                                <a href="/login" className="btn btn-primary" role="button">Registrar Donación</a>
+                            <div className="row" >
+                                <div className="col" id="campoIngresar">
+                                    <output>Dirección: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="direccionTmp" value={this.state.direccionTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
                             </div>
+                            <div className="row">
+                                <div className="col" id="campoIngresar">
+                                    <output>Imagen: </output>
+                                </div>
+                                <div className="col" id="campoIngresar">
+                                    <input type="text" name="imagenTmp" value={this.state.imagenTmp} onChange={this.updateInput.bind(this)} />
+                                </div>
+                            </div>
+                            <div id="botonSubmit">
+                                <button className="btn btn-primary" onSubmit={this.onGuardar.bind(this)} type="submit">Guardar</button>
+                            </div>
+                        </form>
 
-                        </div>
-                    </InfoWindow>
-                </Map>
-
+                    </Modal>
+                </div>
             </div>
-
-
-            <div>
-                <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal">
-                    <h2>Ingrese los datos de la organización</h2>
-                    <form>
-                        <div className="row">
-                            <div className="col" id="campoIngresar">
-                                <output>Nombre: </output>
-                            </div>
-                            <div className="col" id="campoIngresar">
-                                <input type="text" name="nombreTmp" value={this.state.nombreTmp} onChange={this.updateInput.bind(this)} />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col" id="campoIngresar">
-                                <output>Artículos: </output>
-                            </div>
-                            <div className="col" id="campoIngresar">
-                                <input type="text" name="articulosTmp" value={this.state.articulosTmp} onChange={this.updateInput.bind(this)} />
-                            </div>
-                        </div>
-                        <div className="row" >
-                            <div className="col" id="campoIngresar">
-                                <output>Dirección: </output>
-                            </div>
-                            <div className="col" id="campoIngresar">
-                                <input type="text" name="direccionTmp" value={this.state.direccionTmp} onChange={this.updateInput.bind(this)} />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col" id="campoIngresar">
-                                <output>Imagen: </output>
-                            </div>
-                            <div className="col" id="campoIngresar">
-                                <input type="text" name="imagenTmp" value={this.state.imagenTmp} onChange={this.updateInput.bind(this)} />
-                            </div>
-                        </div>
-                        <div id="botonSubmit">
-                            <button className="btn btn-primary" onSubmit={this.onGuardar.bind(this)} >Guardar</button>
-                        </div>
-                    </form>
-
-                </Modal>
-            </div>
-        </div>
         );
     }
 }

@@ -22,13 +22,6 @@ export class Mapa extends Component {
         };
     }
 
-    //Para controlar la ventana de los marcadores
-    estado = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {},
-    };
-
 
     handleGuardar(organizacion) {
         organizacion._id = Math.random().toString(36).substring(2, 9);

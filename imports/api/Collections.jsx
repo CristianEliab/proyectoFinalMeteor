@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
-export const Colleccion = new Mongo.Collection('BaseDatosProyecto');
+export const Colleccion = new Mongo.Collection('basedatosproyecto');
 
 
 if (Meteor.isServer) {
