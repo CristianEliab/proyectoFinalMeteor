@@ -5,7 +5,6 @@ export const Colleccion = new Mongo.Collection('basedatosproyecto');
 
 
 if (Meteor.isServer) {
-    // This code only runs on the server
     Meteor.publish('organizaciones', function tasksPublication() {
         return Colleccion.find();
     });

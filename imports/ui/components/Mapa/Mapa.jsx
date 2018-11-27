@@ -3,6 +3,7 @@ import { Colleccion } from '../../../api/Collections';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import MapaItem from './MapaItem';
+import { Marker } from 'google-maps-react';
 
 export class Mapa extends Component {
 
