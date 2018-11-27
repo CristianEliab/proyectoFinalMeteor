@@ -79,6 +79,7 @@ export default class LoginPage extends Component {
                   </div>
                   <div className="form-group text-center">
                     <p className="text-center">
+                      Registrarse <Link to="/signup">aqui</Link>
                     </p>
                   </div>
                 </form>
