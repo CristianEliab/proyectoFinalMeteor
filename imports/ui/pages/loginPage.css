@@ -1,3 +1,7 @@
 .loginPage{
     margin-top: 200px !important;
 }
+
+input{
+    font-size: 1.2em;
+}

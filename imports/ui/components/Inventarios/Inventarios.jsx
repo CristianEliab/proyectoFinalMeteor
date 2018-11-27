@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import InventarioItem from './InventarioItem';
-import { render } from 'react-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 import Modal from 'react-modal';
-
-
+import { Colleccion } from '../../../api/Collections';
 import CanvasJSReact from '../../../../public/js/canvasjs.react';
 // import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -80,6 +79,11 @@ export class Inventario extends Component {
 
   render() {
 
+    var organizacion = this.props.organizaciones;
+    console.log(organizacion);
+    // var listaProductos = organizacion.productos;
+    // console.log(listaProductos);
+
     var productos = this.state.listaProductos.map(producto => {
       return (
         <InventarioItem pro={producto} key={producto.id} onClickItem={this.handleEditar.bind(this)}></InventarioItem>
@@ -115,7 +119,7 @@ export class Inventario extends Component {
                 <div className="">
                   <div className="page-title">
                     <div className="title_left">
-                      <h3>Inventario <small>Lista de productos de {this.props.name} </small></h3>
+                      <h3>Inventario <small> de </small></h3>
                     </div>
                   </div>
 
@@ -200,4 +204,9 @@ export class Inventario extends Component {
   }
 }
 
-export default Inventario
+export default withTracker(() => {
+  Meteor.subscribe('organizaciones');
+  return {
+    organizaciones: Colleccion.findOne({ "administradores.nombre": "Cristian Rodriguez" }),
+  };
+})(Inventario);

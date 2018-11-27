@@ -7,6 +7,7 @@ import MainContainer from '../../ui/containers/MainContainer.jsx';
 import DonateContainer from '../../ui/containers/DonateContainer.jsx';
 import InventarioContainer from '../../ui/containers/InventariosContainer.jsx';
 import ProductosContainer from '../../ui/containers/ProductosContainer.jsx';
+import MapaContainer from '../../ui/containers/MapaContainer.jsx';
 
 
 // pages
@@ -39,6 +40,7 @@ export class Routes extends Component {
           <Route path="/donar" component={DonateContainer} />
           <Route path="/productos" component={ProductosContainer} />
           <Route path="/inventario" component={InventarioContainer} />
+          <Route path="/admin" component={MapaContainer} />
           <Route exact={true} path="/" component={AppContainer} />
         </div>
       </Router>

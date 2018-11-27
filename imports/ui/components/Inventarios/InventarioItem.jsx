@@ -10,7 +10,7 @@ export class InventarioItem extends Component {
         }
     }
 
-    handleEditar() {
+    handleEditar(e) {
         var opt = {
             aanimationEnabled: true,
             theme: "light2",
@@ -68,6 +68,7 @@ export class InventarioItem extends Component {
             options : opt
         });
         this.props.onClickItem(opt);
+        e.preventDefault();
     }
 
     render() {

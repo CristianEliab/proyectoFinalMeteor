@@ -50,7 +50,7 @@ export default class LoginPage extends Component {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="text-center">Login</h1>
+                <h1 className="text-center">Iniciar Sesión</h1>
               </div>
               <div className="modal-body">
                 {error.length > 0 ?
@@ -63,23 +63,22 @@ export default class LoginPage extends Component {
                     <input type="email"
                       id="login-email"
                       className="form-control input-lg"
-                      placeholder="email" />
+                      placeholder="correo electronico" />
                   </div>
                   <div className="form-group">
                     <input type="password"
                       id="login-password"
                       className="form-control input-lg"
-                      placeholder="password" />
+                      placeholder="contraseña" />
                   </div>
                   <div className="form-group text-center">
                     <input type="submit"
                       id="login-button"
                       className="btn btn-primary btn-lg btn-block"
-                      value="Login" />
+                      value="Iniciar sesión" />
                   </div>
                   <div className="form-group text-center">
                     <p className="text-center">
-                      Don't have an account? Register <Link to="/signup">here</Link>
                     </p>
                   </div>
                 </form>

@@ -23,25 +23,11 @@ export class MapaItem extends Component {
             selectedPlace: {},
         };
 
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-
     }
 
 
     //Cuando se hace click en el mapa llama a esta función
     onMapClicked(mapProps, map, clickEvent) {
-
-        var latitud = clickEvent.latLng.lat();
-        var longitud = clickEvent.latLng.lng();
-
-        this.setState({
-            latitudTmp: latitud,
-            longitudTmp: longitud
-        });
-
-        //Aquí necesito abrir una ventana
-        this.openModal();
         
         //Cierra la ventana abierta
         if (this.state.showingInfoWindow) {
@@ -65,20 +51,9 @@ export class MapaItem extends Component {
         Modal.setAppElement('body');
     }
 
-    openModal() {
-        this.setState({ modalIsOpen: true });
-    }
-
-    closeModal() {
-        this.setState({ modalIsOpen: false });
-    }
 
 
-    updateInput(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    }
+
 
     //Para controlar la ventana de los marcadores
     estado = {
@@ -87,69 +62,6 @@ export class MapaItem extends Component {
         selectedPlace: {},
     };
 
-    onLimpiar(e) {
-
-        this.setState({
-            nombreTmp: "",
-            articulosTmp: "",
-            direccionTmp: "",
-            imagenTmp: "",
-            latitudTmp: "",
-            longitudTmp: "",
-            descripcionTmp: "",
-            showingInfoWindow: false,
-        });
-    }
-
-
-    onGuardar(e) {
-
-        this.closeModal();
-
-        e.preventDefault();
-
-        /**
-        if (this.state.nombreTmp != "" && this.state.articulosTmp && "" && this.state.imagenTmp != ""
-            && this.state.direccionTmp != "" && this.state.descripcionTmp != "")
- */
-
-        if (this.state.nombreTmp != "" && this.state.articulosTmp != "" && this.state.imagenTmp != ""
-            && this.state.direccionTmp != "" && this.state.descripcionTmp != "") {
-            console.log("CAMPOS COMPLETOS")
-
-            //Aquí se guarda
-            var organizacion = {
-                id: this.setState.change,
-                nombre: this.state.nombreTmp,
-                latitud: this.state.latitudTmp,
-                longitud: this.state.longitudTmp,
-                articulos: this.state.articulosTmp,
-                img: this.state.imagenTmp,
-                direccion: this.state.direccionTmp,
-                descripcion: this.state.descripcionTmp,
-                administrador: {},
-                productos: {},
-                donaciones: {},
-            };
-
-            console.log(organizacion)
-
-            //this.props.listaOrganizaciones.push(organizacion);
-
-            this.props.guardar(organizacion);
-
-            this.setState({ change: this.state.change + 1 });
-
-            this.onLimpiar();
-
-        }
-        else {
-            console.log("CAMPOS IMCOMPLETOS")
-        }
-
-
-
-    }
 
 
     render() {
@@ -249,67 +161,6 @@ export class MapaItem extends Component {
                     </Map>
 
                 </div>
-
-
-                <div>
-                    <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onAfterOpen={this.afterOpenModal}
-                        onRequestClose={this.closeModal}
-                        style={customStyles}
-                        contentLabel="Example Modal">
-                        <h2>Ingrese los datos de la organización</h2>
-
-                        <form onSubmit={this.onGuardar.bind(this)}>
-                            <div className="row">
-                                <div className="col" id="campoIngresar">
-                                    <output>Nombre: </output>
-                                </div>
-                                <div className="col" id="campoIngresar">
-                                    <input type="text" name="nombreTmp" value={this.state.nombreTmp} onChange={this.updateInput.bind(this)} />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col" id="campoIngresar">
-                                    <output>Artículos: </output>
-                                </div>
-                                <div className="col" id="campoIngresar">
-                                    <input type="text" name="articulosTmp" value={this.state.articulosTmp} onChange={this.updateInput.bind(this)} />
-                                </div>
-                            </div>
-                            <div className="row" >
-                                <div className="col" id="campoIngresar">
-                                    <output>Dirección: </output>
-                                </div>
-                                <div className="col" id="campoIngresar">
-                                    <input type="text" name="direccionTmp" value={this.state.direccionTmp} onChange={this.updateInput.bind(this)} />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col" id="campoIngresar">
-                                    <output>Imagen: </output>
-                                </div>
-                                <div className="col" id="campoIngresar">
-                                    <input type="text" name="imagenTmp" value={this.state.imagenTmp} onChange={this.updateInput.bind(this)} />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col" id="campoIngresar">
-                                    <output>Descripción del lugar: </output>
-                                </div>
-                                <div className="col" id="campoIngresar">
-                                    <input type="text" name="descripcionTmp" value={this.state.descripcionTmp} onChange={this.updateInput.bind(this)} />
-                                </div>
-                            </div>
-
-                            <div id="botonSubmit">
-                                <button className="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-
-                    </Modal>
-                </div>
-
             </div>
         );
     }

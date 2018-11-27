@@ -1,10 +1,9 @@
 import { withTracker } from 'meteor/react-meteor-data';
-import InventariosPage from '../pages/InventariosPage.jsx';
-
+import MapaPage from '../pages/MapaPage.jsx'
 
 export default withTracker(props => {
   const currentUser = Meteor.user();
   return {
     currentUser,
   };
-})(InventariosPage);
+})(MapaPage);

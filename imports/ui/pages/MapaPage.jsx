@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import Producto from '../components/Productos/Producto';
+import Admin from '../components/Admin';
 
-export class ProductosPage extends Component {
-
+export class MapaPage extends Component {
     constructor(props) {
         super(props);
         this.state = this.getMeteorData();
@@ -37,11 +36,13 @@ export class ProductosPage extends Component {
         });
     }
 
+
     render() {
 
         let currentUser = this.props.currentUser;
         let userDataAvailable = (currentUser !== undefined);
         let loggedIn = (currentUser && userDataAvailable);
+
 
         return (
             <div>
@@ -50,7 +51,7 @@ export class ProductosPage extends Component {
                         <div className="header-wrap">
                             <div className="header-top d-flex justify-content-between align-items-center">
                                 <div className="logo">
-                                    <a href="#" onClick={this.logout}><img src="./logoV.png" alt="" /></a>
+                                    <a href="/home"><img src="./logoV.png" alt="" /></a>
                                 </div>
                                 <div className="main-menubar d-flex align-items-center">
                                     <nav className="hide">
@@ -65,10 +66,10 @@ export class ProductosPage extends Component {
                         </div>
                     </div>
                 </header>
-                <Producto name={loggedIn ? 'Organización ' + currentUser.username : ''} ></Producto>
+                <Admin name={loggedIn ? 'Organización ' + currentUser.username : ''}></Admin>
             </div>
         )
     }
 }
 
-export default ProductosPage
+export default MapaPage

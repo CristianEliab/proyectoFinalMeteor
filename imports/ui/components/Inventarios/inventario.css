@@ -1,5 +1,5 @@
 .Inventarios{
-    background-color:#71ffd1ab;
+    background-color:#8e9492ab;
 }
 
 #modal{
@@ -19,11 +19,6 @@
     margin-top: 10%;
     font-size: 85%;
     width: 70%;
-}
-
-.acciones{
-    display: block;
-    padding: 5%;
 }
 
 #ver-elemento{

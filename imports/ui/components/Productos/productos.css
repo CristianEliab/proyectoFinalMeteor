@@ -14,6 +14,11 @@ div#lista-productos {
     width: 60% !important;
 }
 
+input#fecha{
+    width: 60% !important;
+    font-size: 1em;
+}
+
 .acciones{
     margin-top: 7%;
 }

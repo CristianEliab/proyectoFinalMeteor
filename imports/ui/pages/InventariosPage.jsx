@@ -53,6 +53,7 @@ export class InventariosPage extends Component {
                 </div>
                 <div className="main-menubar d-flex align-items-center">
                   <nav className="hide">
+                    <a href="./admin" >Agregar Centros</a>
                     <a href="./productos" >Productos</a>
                     <a href="./inventario" >Inventario</a>
                     <a href="#" onClick={this.logout}>Logout</a>
@@ -63,10 +64,10 @@ export class InventariosPage extends Component {
             </div>
           </div>
         </header>
-        <Inventarios  name={loggedIn ? 'Organización ' + currentUser.username : ''}></Inventarios>
+        <Inventarios name={loggedIn ? '' + currentUser.username : ''}></Inventarios>
       </div>
     )
   }
 }
 
-export default InventariosPage
+export default InventariosPage;
